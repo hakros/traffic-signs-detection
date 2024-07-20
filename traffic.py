@@ -138,7 +138,7 @@ def get_model():
             # Max Value Pooling using a pool size of 2x2
             # seems to give the best result for efficiency and accuracy
             x = keras.layers.MaxPooling2D(
-                pool_size=(2,2)
+                pool_size=(2, 2)
             )(x)
 
         # Add convolutional layers
@@ -147,7 +147,7 @@ def get_model():
         # For a NUM_CATEGORIES = 43, it seems 32 to 64 filters
         # in a 3x3 kernel is the closest I got to 100% accuracy
         filterNum = 64 if convulutionNum > 0 else 32
-        x = keras.layers.Conv2D(filterNum, (3,3), activation="relu")(x)
+        x = keras.layers.Conv2D(filterNum, (3, 3), activation="relu")(x)
 
         convulutionNum += 1
 
@@ -168,9 +168,8 @@ def get_model():
         outputs=output_layer
     )
 
-    
     model.compile(
-        optimizer=keras.optimizers.Adam(learning_rate=1e-3), #0.001
+        optimizer=keras.optimizers.Adam(learning_rate=1e-3),  # 0.001
 
         # We use CategoricalCrossentropy since we are classifying 43 categories
         # Making this a multi-class classification problem
@@ -185,5 +184,5 @@ def get_model():
     return model
 
 
-if __name__ == "__main__":#
+if __name__ == "__main__":
     main()
